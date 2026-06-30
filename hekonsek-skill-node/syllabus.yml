@@ -1,0 +1,13 @@
+syllabus:
+  description: Guidance for Node architecture and tooling choices.
+  topics:
+    - TypeScript vs JavaScript
+    - Design practices
+      - Options object for optional parameters
+      - Error handling
+      - Hexagonal architecture
+    - Testing
+      - Directory structure
+    - CI/CD
+      - npm ci
+      - npm run build
