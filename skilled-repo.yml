@@ -13,3 +13,11 @@ skills:
 
   - hekonsek/skill-node
   - hekonsek/skill-node-cli
+
+  # Cloud
+
+  ## IaC
+
+  ### Terraform
+
+  - hekonsek/skill-terraform 
