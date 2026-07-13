@@ -1,0 +1,7 @@
+syllabus:
+  description: Terraform
+  topics:
+    - Documentation
+      - terraform-docs
+    - Security tooling:
+      - Terrascan (Deprecated)
