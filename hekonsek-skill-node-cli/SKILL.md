@@ -1,6 +1,16 @@
 ---
 name: skill-node-cli
-description: Opinionated guidance for creating, reviewing, and refactoring Node.js and TypeScript command-line interface projects. Use when working on Node CLI project structure, Commander-based command definitions, separation of CLI adapters from core/domain logic, CLI event listeners, terminal color/progress output, bootstrap command surface, or diagnostic logging flags.
+description: |
+  Opinionated guidance for creating, reviewing, and refactoring Node.js and TypeScript command-line interface projects.
+  
+  Use this skill when working with: 
+    - Working on Node CLI project structure.
+    - Working with CLI UI components like spinners, progress bars, and colorized output. 
+    - Working with commander-based command definitions.
+    - CLI event listeners.
+    - Diagnostic logging flags.
+  
+  This project focuses on CLI-specific aspects of Node.js. For generic Node guidance use skill-node.
 ---
 
 # Node CLI
@@ -23,7 +33,7 @@ For broad project generation or review, read all ADRs first.
 - `references/adr/2-separate-command-line-logic-from-core-domain-business-logic.md`: separate CLI parsing and wiring from services and domain logic.
 - `references/adr/3-cli-should-listen-to-events-from-core-logic-via-listeners.md`: use listener ports for core-to-CLI progress, messages, and warnings when a simple return value is not enough.
 - `references/adr/4-use-chalk-for-coloring-output.md`: use Chalk for terminal color in the presentation layer only.
-- `references/adr/5-use-ora-as-progress-indicator.md`: use Ora for interactive progress indication with CI, non-TTY, JSON, and quiet-mode fallbacks.
+- `references/adr/5-use-ora-as-progress-indicator.md`: use Ora for interactive progress indication with CI, non-TTY, JSON, and quiet-mode fallbacks. Read this for any CLI command that clones or downloads GitHub repositories, fetches remote resources, performs multi-file I/O, runs installs/builds, invokes long-running subprocesses, or otherwise may leave the user waiting.
 - `references/adr/6-bootstrap-new-cli-with-a-single-version-command.md`: bootstrap new CLIs with only a `version` command until real use cases exist.
 - `references/adr/7-use-global-logger-flag-to-configure-logging-level.md`: expose a global `--logger` flag with `silent` as the default diagnostic logging level.
 - `references/adr/security/security_1-use-execfile-instead-of-exec-and-shell-enabled-spawn-to-prevent-shell-injection.md`: use `execFile` by default and avoid shell-enabled command execution for untrusted input.
@@ -46,7 +56,6 @@ Keep Commander, Chalk, Ora, stdout/stderr handling, TTY checks, JSON/quiet behav
 
 ## Implementation Rules
 
-- Use Commander for commands, subcommands, options, and help output by default.
 - Start a new CLI with a single `version` command that reads the package version.
 - Put diagnostic logging behind a global `--logger <level>` option and default it to `silent`.
 - Write structured command results to stdout when appropriate and diagnostic logs to stderr.

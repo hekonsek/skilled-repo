@@ -2,12 +2,6 @@
 
 This repository is an agent-agnostic skill project for opinionated Node.js CLI project structure and implementation guidance. It follows the `AGENTS.md` convention from http://agents.md/ for repository-level agent instructions.
 
-## Project Layout
-
-- `SKILL.md`: portable skill instructions for Codex, Claude, and other agents that support skill-style Markdown instructions.
-- `references/adr/**/*.md`: imported ADRs from `../adr-node-cli/spex/adr/`. These ADRs are the source of truth for the skill guidance and should remain unchanged unless the user explicitly requests an ADR update.
-- `LICENSE`: license notice copied from the source ADR project.
-
 ## Commands
 
 - Validate skill metadata:

@@ -1,6 +1,8 @@
 skills:
   # Tools
 
+  - hekonsek/skill-compiler
+
   ## Architecture
 
   - hekonsek/skill-adr
