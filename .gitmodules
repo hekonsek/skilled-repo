@@ -1,0 +1,18 @@
+[submodule "hekonsek-skill-compiler"]
+	path = hekonsek-skill-compiler
+	url = https://github.com/hekonsek/skill-compiler
+[submodule "hekonsek-skill-adr"]
+	path = hekonsek-skill-adr
+	url = https://github.com/hekonsek/skill-adr
+[submodule "hekonsek-skill-node"]
+	path = hekonsek-skill-node
+	url = https://github.com/hekonsek/skill-node
+[submodule "hekonsek-skill-node-cli"]
+	path = hekonsek-skill-node-cli
+	url = https://github.com/hekonsek/skill-node-cli
+[submodule "hekonsek-skill-kubernetes-argocd"]
+	path = hekonsek-skill-kubernetes-argocd
+	url = https://github.com/hekonsek/skill-kubernetes-argocd
+[submodule "hekonsek-skill-terraform"]
+	path = hekonsek-skill-terraform
+	url = https://github.com/hekonsek/skill-terraform
