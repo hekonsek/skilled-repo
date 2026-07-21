@@ -22,6 +22,14 @@ run "default_configuration" {
     condition     = helm_release.argocd.atomic && helm_release.argocd.cleanup_on_fail
     error_message = "Safe failure handling must be enabled by default."
   }
+
+  assert {
+    condition = one([
+      for item in helm_release.argocd.set : item
+      if item.name == "configs.params.application\\.namespaces"
+    ]).value == "*"
+    error_message = "Argo CD must monitor Application resources in all namespaces."
+  }
 }
 
 run "custom_configuration" {
@@ -52,7 +60,10 @@ run "custom_configuration" {
   }
 
   assert {
-    condition     = helm_release.argocd.set[0].value == "argocd.example.com"
+    condition = one([
+      for item in helm_release.argocd.set : item
+      if item.name == "global.domain"
+    ]).value == "argocd.example.com"
     error_message = "Custom set values must be passed to Helm."
   }
 }

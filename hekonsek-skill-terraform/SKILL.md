@@ -1,6 +1,6 @@
 ---
 name: skill-terraform
-description: Apply opinionated Terraform project conventions for module and environment layout, remote state, generated terraform-docs documentation, formatting, validation, and IaC security tooling. Use when creating, reviewing, refactoring, or validating Terraform modules, root modules, `*.tf` files, `*.tfvars` files, or Terraform CI workflows.
+description: Apply opinionated Terraform conventions for module and environment layout, remote state, generated terraform-docs documentation, formatting, validation, IaC security tooling, and skills derived from Terraform module repositories. Use when creating, reviewing, refactoring, or validating Terraform modules, root modules, `*.tf` files, `*.tfvars` files, Terraform CI workflows, or Terraform module skills.
 ---
 
 # Terraform projects
@@ -9,7 +9,7 @@ description: Apply opinionated Terraform project conventions for module and envi
 
 1. Inspect the repository before changing it. Preserve an established Terraform layout unless the task explicitly requires a migration.
 2. Determine whether the change affects a reusable module, a root module, an environment composition, generated documentation, CI, or state configuration.
-3. Apply the relevant structure and state rules below.
+3. Apply the relevant structure and state rules below. When producing a skill from a Terraform module repository, also apply the module-reference rules.
 4. Keep terraform-docs output generated; change its Terraform inputs or automation rather than its injected Markdown.
 5. After changing any `*.tf` or `*.tfvars` file, run the formatting and validation checks from the applicable project root.
 
@@ -45,6 +45,23 @@ modules/
 - In a repository whose primary purpose is not Terraform, nest both directories under `iac/` instead of adding them at the repository root.
 - Keep all service-specific infrastructure in the same repository so cross-environment changes remain discoverable and atomic.
 - Promote module changes deterministically: tag modules with semantic versions and pin environment module sources with `?ref=<tag>`.
+
+## Produce skills from Terraform modules
+
+When creating or updating a skill based on a Terraform module repository:
+
+1. Identify the module repository's GitHub HTTPS URL and latest stable Git tag according to its release convention.
+2. Instruct consumers to call the upstream module by that URL, pinned to the resolved tag. Do not default to copying the module implementation, an unpinned source, or a mutable branch such as `main`.
+3. Generate examples in this form, preserving any module subdirectory in the source URL when applicable:
+
+   ```hcl
+   module "example" {
+     source = "git::https://github.com/example/terraform-example.git?ref=v1.2.3"
+   }
+   ```
+
+4. Offer inline Terraform derived from the module contents only when the user explicitly prefers a self-contained configuration. Make clear that inline code can diverge from upstream and becomes the consumer's maintenance responsibility.
+5. Refresh the pinned tag whenever maintaining or recompiling the derived skill.
 
 ## Manage state safely
 

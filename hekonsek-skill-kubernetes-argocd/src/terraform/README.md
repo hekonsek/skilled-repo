@@ -8,7 +8,7 @@ the module does not manage cluster credentials.
 
 ```hcl
 provider "helm" {
-  kubernetes = {
+  kubernetes {
     config_path = "~/.kube/config"
   }
 }
@@ -32,23 +32,35 @@ The default chart version requires Kubernetes 1.25 or newer. Review the
 [upstream chart upgrade notes](https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd)
 before changing `chart_version` across a major release.
 
+Argo CD is configured to monitor `Application` resources in every namespace.
+Each `AppProject` must still explicitly allow the namespaces it serves through
+its `spec.sourceNamespaces` field.
+
 Sensitive data should be passed through `set_sensitive_values` or, preferably,
 managed by an external secrets system. Terraform still stores sensitive values
 in state, so ensure the state backend is appropriately protected.
+
+## Helm provider compatibility
+
+
+[Pull request #1804](https://github.com/hashicorp/terraform-provider-helm/pull/1804)
+proposed preserving state when release lookup returns a transient error, but it
+was closed without being merged. Do not relax the provider pin until an upstream
+release contains an equivalent fix and its state migration has been tested.
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
-| ---- | ------- |
+|------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0 |
-| <a name="requirement_helm"></a> [helm](#requirement\_helm) | >= 3.0.0, < 4.0.0 |
+| <a name="requirement_helm"></a> [helm](#requirement\_helm) | = 2.17.0 |
 
 ## Providers
 
 | Name | Version |
-| ---- | ------- |
-| <a name="provider_helm"></a> [helm](#provider\_helm) | 3.2.0 |
+|------|---------|
+| <a name="provider_helm"></a> [helm](#provider\_helm) | 2.17.0 |
 
 ## Modules
 
@@ -57,13 +69,13 @@ No modules.
 ## Resources
 
 | Name | Type |
-| ---- | ---- |
-| [helm_release.argocd](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+|------|------|
+| [helm_release.argocd](https://registry.terraform.io/providers/hashicorp/helm/2.17.0/docs/resources/release) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-| ---- | ----------- | ---- | ------- | :------: |
+|------|-------------|------|---------|:--------:|
 | <a name="input_atomic"></a> [atomic](#input\_atomic) | Whether a failed installation is rolled back automatically. Enabling this also enables waiting. | `bool` | `true` | no |
 | <a name="input_chart_name"></a> [chart\_name](#input\_chart\_name) | Name of the Argo CD Helm chart. | `string` | `"argo-cd"` | no |
 | <a name="input_chart_repository"></a> [chart\_repository](#input\_chart\_repository) | Repository containing the Argo CD Helm chart. | `string` | `"https://argoproj.github.io/argo-helm"` | no |
@@ -85,7 +97,7 @@ No modules.
 ## Outputs
 
 | Name | Description |
-| ---- | ----------- |
+|------|-------------|
 | <a name="output_chart_version"></a> [chart\_version](#output\_chart\_version) | Version of the deployed Argo CD Helm chart. |
 | <a name="output_namespace"></a> [namespace](#output\_namespace) | Kubernetes namespace containing Argo CD. |
 | <a name="output_release_name"></a> [release\_name](#output\_release\_name) | Name of the Argo CD Helm release. |

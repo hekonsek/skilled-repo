@@ -3,5 +3,7 @@ syllabus:
   topics:
     - Documentation
       - terraform-docs
-    - Security tooling:
+    - AI
+      - Skills
+    - Security tooling
       - Terrascan (Deprecated)

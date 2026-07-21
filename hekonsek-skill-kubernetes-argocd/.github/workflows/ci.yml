@@ -1,0 +1,74 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: src/terraform
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.15.8
+
+      - name: Check formatting
+        run: terraform fmt -check -recursive
+        working-directory: .
+
+      - name: Initialize Terraform
+        run: terraform init -backend=false -input=false
+
+      - name: Validate Terraform
+        run: terraform validate -no-color
+
+      - name: Test Terraform
+        run: terraform test -no-color
+
+  integration:
+    name: Terratest (Minikube)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: src/terraform/tests/go.mod
+          cache-dependency-path: src/terraform/tests/go.sum
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.15.8
+
+      - name: Start Minikube
+        uses: medyagh/setup-minikube@v0.0.21
+        with:
+          minikube-version: 1.38.1
+          kubernetes-version: v1.35.5
+          driver: docker
+          cpus: 2
+          memory: 4000m
+
+      - name: Run Terratest
+        run: go test -v -timeout 20m ./...
+        working-directory: src/terraform/tests
+        env:
+          RUN_MINIKUBE_INTEGRATION_TEST: "true"
