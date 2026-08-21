@@ -16,3 +16,6 @@
 [submodule "hekonsek-skill-terraform"]
 	path = hekonsek-skill-terraform
 	url = https://github.com/hekonsek/skill-terraform
+[submodule "obra-superpowers"]
+	path = obra-superpowers
+	url = https://github.com/obra/superpowers
