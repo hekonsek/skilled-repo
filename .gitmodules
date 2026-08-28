@@ -19,3 +19,6 @@
 [submodule "obra-superpowers"]
 	path = obra-superpowers
 	url = https://github.com/obra/superpowers
+[submodule "hekonsek-skill-superpowers-adr"]
+	path = hekonsek-skill-superpowers-adr
+	url = https://github.com/hekonsek/skill-superpowers-adr
