@@ -22,3 +22,6 @@
 [submodule "hekonsek-skill-superpowers-adr"]
 	path = hekonsek-skill-superpowers-adr
 	url = https://github.com/hekonsek/skill-superpowers-adr
+[submodule "hekonsek-adr-node-scripting-bun"]
+	path = hekonsek-adr-node-scripting-bun
+	url = https://github.com/hekonsek/adr-node-scripting-bun
