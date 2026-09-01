@@ -6,18 +6,21 @@ skills:
   - hekonsek/skill-adr
   - hekonsek/skill-superpowers-adr
   - obra/superpowers
-  - hekonsek/adr-node-scripting-bun
 
   ## AI
 
   - hekonsek/skill-compiler
   
-  # Lanuages
+  # Runtime Platforms
 
   ## Node
 
   - hekonsek/skill-node
   - hekonsek/skill-node-cli
+
+  ### Node Scripting
+
+  - hekonsek/adr-node-scripting-bun
 
   # Cloud
 
