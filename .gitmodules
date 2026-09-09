@@ -25,3 +25,6 @@
 [submodule "hekonsek-adr-node-scripting-bun"]
 	path = hekonsek-adr-node-scripting-bun
 	url = https://github.com/hekonsek/adr-node-scripting-bun
+[submodule "hekonsek-skill-mermaid"]
+	path = hekonsek-skill-mermaid
+	url = https://github.com/hekonsek/skill-mermaid
