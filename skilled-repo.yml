@@ -1,11 +1,24 @@
 skills:
-  # Tools
+  # Architecture
 
-  ## Architecture
+  ## Agentic Software Engineering
+
+  ### SDD
+
+  #### Superpowers
+
+  - obra/superpowers
+
+  ## Documentation
+
+  ### ADR
 
   - hekonsek/skill-adr
   - hekonsek/skill-superpowers-adr
-  - obra/superpowers
+  
+  ### Mermaid
+
+  - hekonsek/skill-mermaid
 
   ## AI
 
